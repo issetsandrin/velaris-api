@@ -44,4 +44,45 @@ class CriarPedidoRequest extends FormRequest
             'complemento' => ['nullable', 'string', 'max:120'],
         ];
     }
+
+    /**
+     * Sem isto o Laravel devolve frases como "O entrega informado não existe".
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'pagamento.exists' => __('errors.pagamento_indisponivel'),
+            'entrega.exists' => __('errors.entrega_indisponivel'),
+            'contato_id.exists' => __('errors.contato_nao_encontrado'),
+            'endereco_id.exists' => __('errors.endereco_nao_encontrado'),
+        ];
+    }
+
+    /**
+     * Nomes usados nas demais mensagens de validação.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'pagamento' => 'forma de pagamento',
+            'entrega' => 'forma de entrega',
+            'contato_id' => 'contato',
+            'endereco_id' => 'endereço',
+            'cep' => 'CEP',
+            'cpf' => 'CPF',
+            'nome' => 'nome',
+            'telefone' => 'telefone',
+            'cidade' => 'cidade',
+            'bairro' => 'bairro',
+            'endereco' => 'endereço',
+            'numero' => 'número',
+            'complemento' => 'complemento',
+            'cupom' => 'cupom',
+            'parcelas' => 'parcelas',
+        ];
+    }
 }

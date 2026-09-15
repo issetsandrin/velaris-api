@@ -16,6 +16,8 @@ class EntrarRequest extends FormRequest
         return [
             'email' => ['required', 'email'],
             'senha' => ['required', 'string'],
+            // "Manter minha conta ativa por 30 dias" da tela de entrada.
+            'lembrar' => ['sometimes', 'boolean'],
         ];
     }
 }

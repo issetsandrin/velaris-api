@@ -15,6 +15,8 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'emailVerified' => $this->email_verified_at !== null,
+            'twoFactor' => (bool) $this->two_factor_enabled,
             'addresses' => AddressResource::collection($this->addresses),
             'contacts' => ContactResource::collection($this->contacts),
         ];

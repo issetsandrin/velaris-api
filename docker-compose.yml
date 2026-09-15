@@ -11,3 +11,19 @@ services:
       - "8100:8000"
     environment:
       APP_ENV: local
+    # Domínio inexistente no cadastro: sem isto o resolvedor insiste por ~10 s
+    # antes de responder que não existe, e o formulário fica pendurado.
+    dns_opt:
+      - timeout:2
+      - attempts:2
+    depends_on:
+      - mailpit
+
+  # Caixa de entrada de desenvolvimento: recebe todo e-mail da loja e mostra
+  # em http://localhost:8125. Nada sai para a internet.
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "8125:8025"
+    environment:
+      MP_MAX_MESSAGES: 500

@@ -23,6 +23,20 @@ class CartaoRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'numero' => 'número do cartão',
+            'nome' => 'nome impresso no cartão',
+            'validade' => 'validade',
+            'cvv' => 'código de segurança',
+            'parcelas' => 'parcelas',
+        ];
+    }
+
     public function withValidator($validator): void
     {
         $validator->after(function ($validator): void {
